@@ -244,6 +244,7 @@ document.addEventListener("click", () => {
 unlock.volume = 0;
 speechSynthesis.speak(unlock);
 speechSynthesis.cancel();
+speechSynthesis.resume();
 
     console.log("Mobile audio unlocked");
   }
@@ -276,6 +277,10 @@ function loadVoices(){
     }
   });
 }
+// PRELOAD VOICES FOR ANDROID
+window.speechSynthesis.onvoiceschanged = () => {
+  speechSynthesis.getVoices();
+};
 
 async function speakMessage(message){
   if(!voicesLoaded) await loadVoices();
