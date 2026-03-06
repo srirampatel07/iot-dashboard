@@ -240,8 +240,10 @@ document.addEventListener("click", () => {
   if (!mobileAudioUnlocked) {
     mobileAudioUnlocked = true;
 
-    const unlock = new SpeechSynthesisUtterance("");
-    speechSynthesis.speak(unlock);
+    const unlock = new SpeechSynthesisUtterance("voice enabled");
+unlock.volume = 0;
+speechSynthesis.speak(unlock);
+speechSynthesis.cancel();
 
     console.log("Mobile audio unlocked");
   }
@@ -294,7 +296,8 @@ async function speakMessage(message){
 
   if(femaleVoice) speech.voice = femaleVoice;
 
-  speechSynthesis.cancel();
+  speechSynthesis.resume();
+speechSynthesis.cancel();
 speechSynthesis.speak(speech);
 }
 
